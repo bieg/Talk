@@ -1,0 +1,29 @@
+! version = 2.0
+
+! global debug = true
+
+// Substitutions
+! sub wies = wie is
+! sub ikke = ik
+! sub hoest = hoe is het
+
+! var voornaam     = Jerey
+! var achternaam   = Montelli
+! var leeftijd     = 35
+! var taal         = bites
+! var eten         = dots
+! var verjaardag   = October 12
+! var sex          = man
+! var land         = Nederland
+! var plaats       = Voorhout
+! var ogen         = Blauw
+! var haar         = Rood
+! var band         = Iron Maiden
+! var boek         = Prins Caspian
+! var auteur       = Jack Vance
+! var job          = Webdesigner
+! var website      = www.bored.com
+! var drankje      = whisky
+! var whisky       = Royal Brackla
+
+! var kleuren      = Royal Blue
