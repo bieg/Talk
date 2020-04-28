@@ -1,20 +1,45 @@
-let bot = new RiveScript();
+let bot = new RiveScript({
+    utf8: true,
+    replyNotMatched : "Sorry - daar kan ik helaas niks mee.",
+    replyNotFound: "I don't know how to reply to that."
+});
+
+bot.unicodePunctuation = new RegExp(/[.,!?;:]/g);
+
+bot.errors.objectNotFound = "Something went terribly wrong.";
 
 let d = new Date();
+
 let time = d.getHours();
+
+//
+function addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
+
+let h = addZero(d.getHours());
+
+//console.log('uur: '+ h);
+
 let groet = '';
 
-if (time < 6) {
-    groet = "🌞 Hey, rise and shine!";
+if (h => 00 ) {
+    groet = "Hey, nachtbraker!";
 }
-if (time < 8) {
-    groet = "🙂 Ola, goeiemorgen!";
+if (h > 06) {
+    groet = "Hey, rise and shine!";
 }
-if (time > 12) {
-    groet = "🌞 Hi, goeiemiddag.";
+if (h > 08) {
+    groet = "Ola, goeiemorgen!";
 }
-if ((time > 18) && (time < 24)) {
-    groet = "🌛Hoi, goeienavond!";
+if (h > 12) {
+    groet = "Hi, goeiemiddag.";
+}
+if ((h > 18) && (h < 24)) {
+    groet = "Hoi, goeienavond!";
 }
 
 const message_container = document.querySelector('.messages');
@@ -22,20 +47,22 @@ const form = document.querySelector('form');
 const input_box = document.querySelector('input');
 
 const brains = [
-    './../rive/brain.rive',
+    './../rive/brain.rive',  
     './../rive/taalGebruik.rive',
     './../rive/conversation.rive',
-    './../rive/google.rive'
+    './../rive/google.rive',
+    './../rive/goodBye.rive'
 ];
 
 bot.loadFile(brains).then(botReady).catch(botNotReady);
 
 function botReady() {
     bot.sortReplies();
-    botReply(`<p class="intro">` + groet + ` Jerey van BackInBusiness hier. Need a 🖖 ?</p>
-    <button onClick="botHaast('Vertel?')">🚄 Ja man - snel ook...</button><br>
-    <button onClick="botHelp('Hoe kan ik je helpen?')">👍 Graag!</button><br>
-    <button onClick=botTips()>💡Heb je tips voor me?</button>
+    botReply(`<p class="intro">` + groet + ` <br>Jeremy van BackInBusiness hier.</p>`);
+    botReply(`<p>Need a <span class='icoon'>🖖</span>? </p>
+    <button onClick="botPrive('Vertel?')"><span class="icoon">🚄</span> Ja man - snel ook...</button><br>
+    <button onClick="botHelp('Hoe kan ik je helpen?')"><span class='icoon'>👍</span> Graag!</button><br>
+    <button onClick=botTips()><span class='icoon'>💡</span> Heb je tips voor me?</button>
     `);
 }
 
@@ -48,17 +75,16 @@ form.addEventListener('submit', (e) => {
 function botHaast(message) {
     botReply(
         '<p>Ok - dan een paar snelle vragen. Wat voor soort hulp zoek je?</p>' +
-        '<button onClick=botPrive()>👕 zelf</button>' +
-        '<button onClick=botZakelijk()>👔 business</button>'
+        '<button onClick=botPrive()><span class="icoon">👕</span> zelf</button>' +
+        '<button onClick=botZakelijk()><span class="icoon">👔</span> business</button>'
     )
 }
 
 function botPrive(message) {
-    botReply('<p>Wow - pittig... sorry. Wat is er precies aan de hand dan als ik zo vrij mag vragen? ' +
-        'Waar gaat het om?</p>' +
-        '<button onClick=botRelatie("slecht")>Mijn relatie is slecht.</button><br>' +
-        '<button onClick=botReflectie("ongelukkig")>Ik voel me ongelukkig.</button><br>' +
-        '<button onClick=botRichting("baan")>Heb ik wel de juiste baan?</button>'
+    botReply('<p>Waarom dan?</p>' +
+        '<button onClick=botRelatie("slecht")><span class="icoon">😥</span> Mijn relatie is slecht.</button><br>' +
+        '<button onClick=botReflectie("ongelukkig")><span class="icoon">😥</span> Ik voel me ongelukkig.</button><br>' +
+        '<button onClick=botRichting("baan")><span class="icoon">😥</span> Heb ik wel de juiste baan?</button>'
     )
 }
 
@@ -87,10 +113,10 @@ function botRelatieVervolg(message) {
 }
 
 function botTips(message) {
-    botReply('<p>Aber sicher</p> Ik heb wel een paar bruikbare tips waar je direct wat aan hebt.' +
-        '<img src="https://media.giphy.com/media/3oGNSjvT5LBekJEQWk/source.gif" width="75%">')
+    botReply('<p>Aber sicher</p><p>Ik heb wel een paar bruikbare tips waar je direct wat aan hebt.' +
+        '<img src="https://media.giphy.com/media/3oGNSjvT5LBekJEQWk/source.gif" width="75%"></p>')
     botReply(
-        'Uiteraard afhankelijk van wat je zoekt natuurlijk<br>' +
+        '<p>Uiteraard afhankelijk van wat je zoekt natuurlijk</p>' +
         '<button onClick=botPersoonlijk()>Persoonlijk</button><br>' +
         '<button onClick=botFinancieel()>Financieel</button><br>' +
         '<button>Personeel</button><br>' +
@@ -121,9 +147,12 @@ function selfReply(message) {
 
     bot.reply("local-user", message).then(function(reply) {
         botReply(reply);
+        console.log("geklikt");
     });
 }
 
 function botNotReady(err) {
     console.log("WOW!", err);
+
+    err = "Sorry - dat ging even mis. Probeer het nog eens?"
 }

@@ -1,57 +1,81 @@
-+*
-- hierna naar kennismaken {topic=kennismaken}
-
+//  
 + [*]slecht{weight=333}|moeilijk|zwaar[*]
-- Pittig hoor. Fijn dat je het wil delen.\n
-    ^Moet me een last zijn op je schouders. Hoe wil je nu verder? {topic=relatie_vervolg}
+- <p>pittig hoor. Fijn dat je het wil delen.\n
+    ^Moet me een last zijn op je schouders. Hoe wil je nu verder? {topic=02relatie_vervolg02}</p>
 
 + [*]mijn relatie is slecht {weight=666}|mijn relatie werkt niet[*]
 - <p>Oei - dat lijkt me niet zo tof. Attent dat je het wil delen met me. \n
-^Moet me een last zijn op je schouders. Hoe ga je nu verder?{topic=relatie_vervolg02}</p>
+^Moet me een last zijn op je schouders. Hoe ga je nu verder?{topic=02relatie_vervolg02}</p>
 
 + [*]ik voel me ongelukkig{weight=777}|ik ben ongelukkig[*]
-- Ongelukkig zijn is een zware dobber. \n
-^Soms zijn mijn bites ook wat dark. Maar enig idee hoe nu verder?{topic=relatie_vervolg02}
+- <p>Ongelukkig zijn is een zware dobber. \n
+^Soms zijn mijn bites ook wat dark. Maar enig idee hoe nu verder?{topic=02relatie_vervolg02}</p>
 
 + heb ik wel de juiste baan {weight=888}
-- Een goeie baan is zo te vinden - maar de juiste tegenkomen is zeldzaam. \n
-^Vragen stellen, twijfelen, kritisch zijn is juist iets dat je helpt.<br><br>
-^Ik kwam wel dit tegen. <br><a href="https://www.jobpersonality.com/persoonlijkheid-en-werk" target="_blank"> Wat past bij mij?</a>\n
-^<p><img src='https://www.jobpersonality.com/dynamic/media/1/images/klein/welke%20baan%20past%20bij%20mij.jpg' width="30%"></p>
+- <p>Een goeie baan is zo te vinden - maar de juiste tegenkomen is zeldzaam. \n
+^Vragen stellen, twijfelen, kritisch zijn is juist iets dat je helpt.</p>
+^<p>Ken je deze? <br>
+^<span><a href="https://www.jobpersonality.com/persoonlijkheid-en-werk" class="imgHolder" target="_blank"><br>
+^<img src="https://www.jobpersonality.com/dynamic/media/1/images/klein/welke%20baan%20past%20bij%20mij.jpg" width="60%"><br><br>
+^Wat past bij mij?</a></span></p>
 
-> topic relatie_vervolg02
-+ geen idee
-- Moeilijke situatie hoor. Zal ik wat meedenken met je?\n
+> topic 02relatie_vervolg02
++ [*]geen idee[*] 
+- <p>Moeilijke situatie hoor. Zal ik wat meedenken met je?\n
     ^Ik heet <bot voornaam>. Hoe heet jij eigenlijk?\n
-    ^ <set retry=0>{topic=relatie_introductie03}
+    ^ <set retry=0>{topic=relatie_introductie03}</p>
 
 + [*]nee|niet|nope[*]
-- 't is wat hè? Als je wil kan ik wat meedenken met je?\n
-    ^Trouwens ik heet <bot naam>. Hoe heet jij eigenlijk? Dat vind ik wel fijn om te weten. \n
-    ^ <set retry=0>{topic=relatie_introductie03}
+- <p>En dat terwijl het leuk had moeten zijn... Als je wil kan ik meedenken met je over hoe nu verder?\n
+    ^Trouwens ik heet <bot naam>. En jij? Hoe heet jij eigenlijk?\n
+    ^ <set retry=0>{topic=relatie_introductie03}</p>
 
-+ [*]gaat je niet aan|bemoei je dr niet mee[*]
-- Ok - begrijp ik. Laat ik je alleen. Goed? {topic=ik_laat_je_alleen}
-
-+ [*]weet jij het|goeie vraag[*]
-- Het lijkt me ook lastig. Al eens je gedachten op papier gezet?{topic=gedachten_op_papier}
-
-+ [*]hulp zoeken|help zoeken|praten[*]
-- Daar is moed voor nodig. Best wel een held.\n
-^Wil je misschien een tip ofzo? Of een suggestie?{topic=random}
++ [*]doorgaan[*]
+- <p>Knap. Dat je dat kan. Al ideëen over hoe je wil doorgaan?{topic=relatie_verdergaan}</p>
 < topic
 
+> topic relatie_vervolg03
++ [*]gaat je niet aan|bemoei je dr niet mee[*]
+- <p>Ok - begrijp ik. Laat ik je alleen. Goed? {topic=ik_laat_je_alleen}</p>
+
++ [*]weet jij het|goeie vraag[*]
+- <p>Het lijkt me ook lastig. Al eens je gedachten op papier gezet?{topic=gedachten_op_papier}</p>
+
++ [*]hulp zoeken|help zoeken|praten[*]
+- <p>Daar is moed voor nodig. Best wel een held.\n
+^Wil je misschien een tip ofzo? Of een suggestie?{topic=random}</p>
+
 + kun je me helpen {topic=random}
-- Natuurlijk kan ik je helpen
+- <p>natuurlijk kan ik je helpen</p>
+< topic
 
 > topic relatie_introductie03
-+ *
-- <set name=<formal>>Goed je te leren kennen <get name>. Vertel eens wat meer over je mentale rust?{topic=relatie_mentalerust04}
++ ik heet *
+- <p><set naam=<formal>>Goed je te leren kennen <get name>. Vertel eens wat meer? Hoe is het met je hoofd? Mentaal ook ok <get name>?\n
+^over je mentale rust?{topic=relatie_mentalerust04}</p>
+
++ mijn naam is *
+- <p><set naam=<formal>>Goed je te leren kennen <get name>. Vertel eens wat meer? Hoe is het met je hoofd? Mentaal ook ok <get name>?\n
+^over je mentale rust?{topic=relatie_mentalerust04}</p>
+
++ je kunt mij * noemen
+- <p><set naam=<formal>>Goed je te leren kennen <get name>. Vertel eens wat meer? Hoe is het met je hoofd? Mentaal ook ok <get name>?\n
+^over je mentale rust?{topic=relatie_mentalerust04}</p>
+
++ noem mij maar *
+- <p><set naam=<formal>>Goed je te leren kennen <get name>. Vertel eens wat meer? Hoe is het met je hoofd? Mentaal ook ok <get name>?\n
+^over je mentale rust?{topic=relatie_mentalerust04}</p>
+< topic
 
 > topic relatie_mentalerust04 
 + *
-- blabla
+- <p>blabla</p>
+< topic
+
+> topic relatie_doorgaan
++ *
+- jaja..
 < topic
 
 +[*] wjb [*]
-- Bieg, bieg, bieg
+- <p>Bieg, bieg, bieg</p>

@@ -1,6 +1,7 @@
 ! version = 2.0
 
 ! global debug = true
+! var UTF8 = true
 
 // Substitutions
 ! sub wies = wie is
@@ -12,6 +13,7 @@
 ! var leeftijd     = 35
 ! var taal         = bites
 ! var eten         = dots
+! var phone        = 06-1112233 
 ! var verjaardag   = October 12
 ! var sex          = man
 ! var land         = Nederland
